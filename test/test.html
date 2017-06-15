@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>测试用例</title>
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />
+        <style media="screen">
+            a{
+                font-size: 2em;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="javascript:void(0);">open app</a>
+        <script src="./index.js" charset="utf-8"></script>
+        <script type="text/javascript">
+            document.querySelector('a').addEventListener('click',function(){
+                openApp.open('sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943');
+            },false);
+        </script>
+    </body>
+</html>
