@@ -19,3 +19,7 @@ openApp.open('sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid
  */
 
 ```
+
+## browser support
+
+not support android 4.4 below
