@@ -12,11 +12,16 @@
     </head>
     <body>
         <a href="javascript:void(0);">open app</a>
+        <div id="msg" style="font-size:2em;"></div>
         <script src="./index.js" charset="utf-8"></script>
         <script type="text/javascript">
             document.querySelector('a').addEventListener('click',function(){
-                openApp.open('sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943');
+                openApp.open('sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943',function(){
+                    console.log('error');
+                    document.querySelector('#msg').innerHTML = '调用失败了！！！';
+                }, 2000);
             },false);
+
         </script>
     </body>
 </html>

@@ -1,15 +1,8 @@
 {
-    "name": "openApp",
-    "version": "0.1.1",
-    "description": "sina news group fe stagging",
-    "author": "jilong5",
-    "scripts": {
-        "dev-build": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./webpack.config.js --host test.sina.com.cn --port 80 --env.NODE_ENV=dev-server",
-        "dev-hmr-build": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --config ./webpack.config.js --host test.sina.com.cn --port 80 --hot --env.NODE_ENV=dev-hmr",
-        "build": "node ./node_modules/webpack/bin/webpack.js --config ./webpack.config.js --color --progress --env.NODE_ENV=prod",
-        "dev-ie-build": "node ./node_modules/webpack/bin/webpack.js --config ./webpack.config.js --color --progress --watch -d --env.NODE_ENV=dev-watch",
-        "dev-ie-server": "node ./node_modules/http-server/bin/http-server ./test -p 80"
-    },
+    "name": "open-native-app",
+    "version": "1.0.0",
+    "description": "open app by url scheme",
+    "main": "assets/index.js",
     "dependencies": {
         "css-loader": "^0.23.1",
         "es5-shim": "^4.5.8",
@@ -32,16 +25,36 @@
         "clean-webpack-plugin": "^0.1.14",
         "webpack-spritesmith": "^0.3.0",
         "tinypng-webpack-plugin": "^0.0.4",
-        "postcss-fixie":"^1.0.0",
-        "postcss-will-change":"^1.1.0",
-        "postcss-filter-gradient":"^0.2.6",
-        "mustache":"^2.3.0",
-        "http-server":"^0.10.0"
+        "postcss-fixie": "^1.0.0",
+        "postcss-will-change": "^1.1.0",
+        "postcss-filter-gradient": "^0.2.6",
+        "mustache": "^2.3.0",
+        "http-server": "^0.10.0"
     },
     "devDependencies": {
         "webpack-dev-server": "^2.4.5",
         "webpack-dashboard": "^0.2.0",
         "open-browser-webpack-plugin": "^0.0.3",
         "webpack-merge": "^4.1.0"
-    }
+    },
+    "scripts": {
+        "test": "node ./node_modules/webpack/bin/webpack.js --config ./webpack.config.js --color --progress --watch -d --env.NODE_ENV=test",
+        "build": "node ./node_modules/webpack/bin/webpack.js --config ./webpack.config.js --color --progress --env.NODE_ENV=prod",
+        "build-uglifyJs": "node ./node_modules/webpack/bin/webpack.js --config ./webpack.config.js --color --progress -p --env.NODE_ENV=prod"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/skyujilong/openApp.git"
+    },
+    "keywords": [
+        "url scheme open app",
+        "web open app",
+        "open app"
+    ],
+    "author": "jilong5",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/skyujilong/openApp/issues"
+    },
+    "homepage": "https://github.com/skyujilong/openApp#readme"
 }

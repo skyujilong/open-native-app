@@ -8,6 +8,7 @@ const entryConf = require('./webpack-cfg/entry.conf.js');
 const baseConf = require('./webpack-cfg/base.conf.js');
 // 开发环境配置
 const devConf = require('./webpack-cfg/dev.conf.js');
+const prodConf = require('./webpack-cfg/prod.conf.js');
 // common config
 const commonConf = require('./webpack-cfg/common.conf.js');
 module.exports = (env) => {
@@ -15,5 +16,11 @@ module.exports = (env) => {
     let webpackConfig;
     let runMode = env['NODE_ENV'];
     let baseMerge = merge.strategy(baseConf);
-    return baseMerge(commonConf, entryConf, devConf);
+
+    if (runMode === 'test') {
+        return baseMerge(commonConf, entryConf, devConf);
+    } else if (runMode === 'prod') {
+        return baseMerge(commonConf, entryConf, prodConf);
+    }
+
 }
