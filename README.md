@@ -23,3 +23,8 @@ openApp.open('sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid
 ## browser support
 
 not support android 4.4 below
+
+uc 11+
+qq 7+
+ios 9 and ios 10
+chrome ?
