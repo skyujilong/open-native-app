@@ -7,6 +7,7 @@ var isUC = /UCBrowser/i.test(ua);
 var isSafari = !isUC && !isChrome && (/([\w.]*) safari/).test(ua);
 var isIos = (/like mac os x/i).test(ua);
 var isRuning = false;
+var isWX = /MicroMessenger/i.test(ua);
 var defalutDelayTime = 1.5 * 1000;
 var errorIde; //普通错误setTimeout id
 var openIde; //window.open的setInterval id
@@ -61,7 +62,9 @@ module.exports = {
         if (Object.prototype.toString.call(errorCb) !== '[object Function]') {
             throw new Error('errorCb must be a function!');
         }
-
+        if(isWX){
+            errorCb();
+        }
         if (isRuning) {
             return;
         }
