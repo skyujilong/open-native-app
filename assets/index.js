@@ -87,9 +87,13 @@ var isChrome = /(chrome|crios)\/([\d.]*)/.test(ua);
 var isBaidu = /baidu/i.test(ua);
 var ios8up = /version\/(\d+)(:?.+)mobile(:?.+)safari(:?.+)$/i.test(ua) && RegExp.$1 > 8;
 var isUC = /UCBrowser/i.test(ua);
+var isQQ = /MQQBrowser/i.test(ua);
 var isSafari = !isUC && !isChrome && (/([\w.]*) safari/).test(ua);
 var isIos = (/like mac os x/i).test(ua);
+
+var isAndroid = (!isIos) && ((/android/).test(ua) || (/xiaomi/).test(ua));
 var isRuning = false;
+var isWX = /MicroMessenger/i.test(ua);
 var defalutDelayTime = 1.5 * 1000;
 var errorIde; //普通错误setTimeout id
 var openIde; //window.open的setInterval id
@@ -144,7 +148,9 @@ module.exports = {
         if (Object.prototype.toString.call(errorCb) !== '[object Function]') {
             throw new Error('errorCb must be a function!');
         }
-
+        if(isWX){
+            errorCb();
+        }
         if (isRuning) {
             return;
         }
@@ -167,7 +173,7 @@ module.exports = {
             document.addEventListener('-webkit-visibilitychange', changeVisibility, false);
         }
 
-        if (isChrome && !isBaidu || ios8up) {
+        if ((isChrome && !isBaidu && !isQQ) || ios8up ) {
             var openWin = window.open(url, "_self", "height=1,width=1,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no");
             openIde = setInterval(function() {
                 if ('object' == typeof openWin) {
