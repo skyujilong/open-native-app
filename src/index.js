@@ -51,7 +51,7 @@ function errorCbHandler(errorCb, delayTime) {
 }
 
 module.exports = {
-    open: function(url, errorCb, wxCb, delayTime) {
+    open: function (url, wxCb, errorCb, delayTime) {
 
         if (!delayTime) {
             delayTime = defalutDelayTime;
@@ -62,6 +62,10 @@ module.exports = {
         if (!errorCb) {
             throw new Error('need error callback');
         }
+        if (!wxCb){
+            throw new Error('need wxCb callback');
+        }
+
         if (Object.prototype.toString.call(errorCb) !== '[object Function]') {
             throw new Error('errorCb must be a function!');
         }

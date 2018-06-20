@@ -7,7 +7,15 @@ web浏览器，通过，scheme协议方式打开app
 ```javascript
 //cmd   support umd（支持umd格式） 在浏览器直接引入的全局模式下，全局对象为openApp
 var openApp = require('open-native-app');
-openApp.open('sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943',function(){
+openApp.open('sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943',function(code){
+    switch (code){
+        case 'ios':
+        break;
+        case 'android':
+        break;
+    }
+    console.log('in wx will call this callback.');
+},function(){
     console.log('error');
 }, 2000);
 
@@ -32,4 +40,4 @@ uc 11+
 qq 7+
 ios 9 and ios 10
 chrome ?
-wx not support (微信不支持，将会直接调用errorCb函数)
+wx will call wxCb function
