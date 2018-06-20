@@ -51,7 +51,7 @@ function errorCbHandler(errorCb, delayTime) {
 }
 
 module.exports = {
-    open: function(url, errorCb, delayTime) {
+    open: function(url, errorCb, wxCb, delayTime) {
 
         if (!delayTime) {
             delayTime = defalutDelayTime;
@@ -66,7 +66,9 @@ module.exports = {
             throw new Error('errorCb must be a function!');
         }
         if(isWX){
-            errorCb();
+            var code = '';
+            code = isIos ? 'ios' : 'android';
+            wxCb(code);
         }
         if (isRuning) {
             return;
