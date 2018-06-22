@@ -156,6 +156,7 @@ module.exports = {
             var code = '';
             code = isIos ? 'ios' : 'android';
             wxCb(code);
+            return;
         }
         if (isRuning) {
             return;
