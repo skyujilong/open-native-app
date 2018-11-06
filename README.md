@@ -34,9 +34,8 @@ openApp.open(....)
 
 ## browser support
 
-not support android 4.4 below
+not support android 4.4 below & uc
 
-uc 11+
 qq 7+
 ios 9 and ios 10
 chrome ?
