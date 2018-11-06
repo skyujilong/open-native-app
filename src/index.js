@@ -2,7 +2,8 @@
 var ua = navigator.userAgent.toLowerCase();
 var isChrome = /(chrome|crios)\/([\d.]*)/.test(ua);
 // var isBaidu = /baidu/i.test(ua);
-var ios8up = /version\/(\d+)(:?.+)mobile(:?.+)safari(:?.+)$/i.test(ua) && RegExp.$1 > 8;
+var ios8up = /version\/(\d+)(:?.+)mobile(:?.+)safari(:?.+)$/i.test(ua) && RegExp.$1 > 8 || /cpu\s*iphone\s*os\s*(\d+)/i.test(ua) && RegExp.$1 > 8;
+//CPU iPhone OS 11_0 like Mac OS X
 var isUC = /UCBrowser/i.test(ua);
 var isQQ = /MQQBrowser/i.test(ua);
 var isSafari = !isUC && !isChrome && (/([\w.]*) safari/).test(ua);
@@ -43,9 +44,6 @@ function errorCbHandler(errorCb, delayTime) {
     } else {
         errorIde = setTimeout(function() {
             isRuning = false;
-            if (openIde) {
-                clearInterval(openIde);
-            }
             if (!document.hidden) {
                 errorCb();
             }
@@ -100,15 +98,20 @@ module.exports = {
             document.addEventListener('-webkit-visibilitychange', changeVisibility, false);
         }
 
+
         let iframe = document.createElement('iframe');
         iframe.style.display = 'none';
         iframe.style.height='0';
         iframe.style.overflow='hidden';
         iframe.frameborder='none';
         try{
-            iframe.src = `javascript:document.write("<html><head></head><body><script>location.href='${url}';</script></body></html>")`;
+            if ((isSafari && ios8up) || isChrome) {
+                location.href = url;
+            }else{
+                iframe.src = ["javascript:document.write(\"<html><head></head><body><script>location.href=",
+                    url, ""].join("';</script></body></html>\"");
+            }
         }catch(e){
-            
         }
         document.body.appendChild(iframe);
     }
