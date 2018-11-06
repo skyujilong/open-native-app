@@ -12,11 +12,14 @@
     </head>
     <body>
         <a href="javascript:void(0);">open app</a>
+        <a href="sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943">url open !!!</a>
         <div id="msg" style="font-size:2em;"></div>
         <script src="./index.js" charset="utf-8"></script>
         <script type="text/javascript">
             document.querySelector('a').addEventListener('click',function(){
-                openApp.open('sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943',function(){
+                openApp.open('sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943',(code)=>{
+                    alert(code);
+                },function(){
                     alert('调用失败');
                     console.log('error');
                     // document.querySelector('#msg').innerHTML = '调用失败了！！！';
