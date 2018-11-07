@@ -182,7 +182,7 @@ module.exports = {
         }
 
 
-        let iframe = document.createElement('iframe');
+        var iframe = document.createElement('iframe');
         iframe.style.display = 'none';
         iframe.style.height='0';
         iframe.style.overflow='hidden';
