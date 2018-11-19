@@ -8,7 +8,7 @@ var isUC = /UCBrowser/i.test(ua);
 var isQQ = /MQQBrowser/i.test(ua);
 var isSafari = !isUC && !isChrome && (/([\w.]*) safari/).test(ua);
 var isIos = (/like mac os x/i).test(ua);
-
+var isHuaWei = /huawei/i.test(ua);
 var isAndroid = (!isIos) && ((/android/).test(ua) || (/xiaomi/).test(ua));
 var isRuning = false;
 var isWX = /MicroMessenger/i.test(ua);
@@ -105,7 +105,7 @@ module.exports = {
         iframe.style.overflow='hidden';
         iframe.frameborder='none';
         try{
-            if ((isSafari && ios8up) || isChrome) {
+            if ((isSafari && ios8up) || isChrome || isHuaWei) {
                 location.href = url;
             }else{
                 iframe.src = ["javascript:document.write(\"<html><head></head><body><script>location.href=",

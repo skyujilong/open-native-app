@@ -1,6 +1,6 @@
 {
     "name": "open-native-app",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "open app by url scheme",
     "main": "assets/index.js",
     "dependencies": {
