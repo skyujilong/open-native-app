@@ -1,8 +1,9 @@
 {
     "name": "open-native-app",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "description": "open app by url scheme",
     "main": "assets/index.js",
+    "types":"./index.d.ts",
     "dependencies": {
         "css-loader": "^0.23.1",
         "es5-shim": "^4.5.8",
