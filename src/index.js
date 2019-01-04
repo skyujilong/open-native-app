@@ -6,6 +6,7 @@ var ios8up = /version\/(\d+)(:?.+)mobile(:?.+)safari(:?.+)$/i.test(ua) && RegExp
 //CPU iPhone OS 11_0 like Mac OS X
 var isUC = /UCBrowser/i.test(ua);
 var isQQ = /MQQBrowser/i.test(ua);
+var isQQApp = /qbwebviewtype\/1/i.test(ua);
 var isSafari = !isUC && !isChrome && (/([\w.]*) safari/).test(ua);
 var isIos = (/like mac os x/i).test(ua);
 var isHuaWei = /huawei/i.test(ua);
@@ -104,15 +105,27 @@ module.exports = {
         iframe.style.height='0';
         iframe.style.overflow='hidden';
         iframe.frameborder='none';
-        try{
-            if ((isSafari && ios8up) || isChrome || isHuaWei) {
-                location.href = url;
-            }else{
-                iframe.src = ["javascript:document.write(\"<html><head></head><body><script>location.href=",
-                    url, ""].join("';</script></body></html>\"");
-            }
-        }catch(e){
-        }
+        // try{
+        //     if ((isSafari && ios8up) || isChrome || isHuaWei || (isQQApp && isIos)) {
+        //         alert('qq!!!');
+        //         location.href = url;
+        //     }else{
+        iframe.src=[
+            'javascript:document.write(\'',
+                '<html><body>',
+                    '<a href="',url,'">open</a>',
+                    '<script>',
+                        'document.querySelector("a").dispatchEvent(new MouseEvent("click"));',    
+                    ,'<\/script>',
+                    // '<script>location.href="',url,'"<\/script>',    
+                ,'</body></html>',
+            '\')'
+        ].join('');
+            // }
+        // }catch(e){
+        //     alert(e);
+        // }
+        // alert('3333333');
         document.body.appendChild(iframe);
     }
 }

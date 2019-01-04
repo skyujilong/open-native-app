@@ -21,7 +21,9 @@
         </script>
         <!-- <script src="./index.js" charset="utf-8"></script> -->
         <script type="text/javascript">
-            document.querySelector('a').addEventListener('click',function(){
+            // document.querySelector('a').href ='sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943';
+            document.querySelector('a').addEventListener('click',function(e){
+                e.preventDefault();
                 openApp.open('sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943',(code)=>{
                     alert(code);
                 },function(){
@@ -30,7 +32,48 @@
                     // document.querySelector('#msg').innerHTML = '调用失败了！！！';
                 }, 2000);
             },false);
-
+            
+            // var evt = new MouseEvent('click', {
+            //         view: window,
+            //         bubbles: true,
+            //         cancelable: true
+            //     });
+            // document.querySelector('a').dispatchEvent(evt);
+            var url = 'sinablog://blog.sina.com.cn?from=sinacn&jumptype=adetail&articleid=7ffe016f0102x21w&bloguid=2147352943';
+            // var iframe = document.createElement('iframe');
+            // iframe.src = [
+            //     'javascript:document.write("',
+            //         '<html>',
+            //             '<head>',
+            //                 // '<script>',
+            //                 //     ';location.href=\"',url,'\"',
+            //                 // '<\/script>',
+            //             '</head>',
+            //             '<body>',
+            //                 '<a href=\"', url, '\">open</a>',
+            //                 // '<script>',
+            //                 //     ';document.querySelector(\"a\").dispatchEvent(new MouseEvent(\"click\"));',
+            //                 // '<\/script>',
+            //             '</body>',
+            //         '</html>',
+            //     '");'
+            // ].join("");
+            // iframe.src=[
+            //     'javascript:document.write(\'',
+            //         '<html><body>',
+            //             '<a href="',url,'">open</a>',
+            //             '<script>',
+            //                 'document.querySelector("a").dispatchEvent(new MouseEvent("click"));',    
+            //             ,'<\/script>',
+            //             '<script>location.href="',url,'"<\/script>',    
+            //         ,'</body></html>',
+            //     '\')'
+            // ].join('');
+            // document.body.appendChild(iframe);
+// document.querySelector('a')
+        </script>
+        <script>
+            document.write('<h1>' + navigator.userAgent + '</h1>');
         </script>
     </body>
 </html>
