@@ -89,9 +89,10 @@ var ios8up = /version\/(\d+)(:?.+)mobile(:?.+)safari(:?.+)$/i.test(ua) && RegExp
 //CPU iPhone OS 11_0 like Mac OS X
 var isUC = /UCBrowser/i.test(ua);
 var isQQ = /MQQBrowser/i.test(ua);
+var isQQApp = /qbwebviewtype\/1/i.test(ua);
 var isSafari = !isUC && !isChrome && (/([\w.]*) safari/).test(ua);
 var isIos = (/like mac os x/i).test(ua);
-var isHuaWei = /huawei/i.test(ua);
+var isHuaWei = /huawei|honorkiw/i.test(ua);
 var isAndroid = (!isIos) && ((/android/).test(ua) || (/xiaomi/).test(ua));
 var isRuning = false;
 var isWX = /MicroMessenger/i.test(ua);
@@ -110,8 +111,8 @@ function errorCbHandler(errorCb, delayTime) {
         //但是android因为是多线程的所以貌似不行的  uc浏览器也有同样的问题
         //android 浏览器 测试uc
         //总计倒计时2s
-        //ios 会弹出来一个确认对话框，因此 多加500 延迟
-        var count = Math.floor((delayTime + 500) / 10);
+        //ios 会弹出来一个确认对话框，因此 多加1000 延迟
+        var count = Math.floor((delayTime + 1000) / 10);
         var tmpCount = count;
         var currentTime = new Date().getTime();
         var ios8UpIde = setInterval(function() {
@@ -136,7 +137,6 @@ function errorCbHandler(errorCb, delayTime) {
 
 module.exports = {
     open: function (url, wxCb, errorCb, delayTime) {
-
         if (!delayTime) {
             delayTime = defalutDelayTime;
         }
@@ -181,22 +181,29 @@ module.exports = {
             document.addEventListener('-webkit-visibilitychange', changeVisibility, false);
         }
 
-
-        var iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.style.height='0';
-        iframe.style.overflow='hidden';
-        iframe.frameborder='none';
-        try{
-            if ((isSafari && ios8up) || isChrome || isHuaWei) {
-                location.href = url;
-            }else{
-                iframe.src = ["javascript:document.write(\"<html><head></head><body><script>location.href=",
-                    url, ""].join("';</script></body></html>\"");
-            }
-        }catch(e){
+        if ( isSafari || isHuaWei) {
+            location.href = url;
+        }else{
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.style.height='0';
+            iframe.style.overflow='hidden';
+            iframe.frameborder='none';
+            iframe.src=[
+                'javascript:document.write(\'',
+                    '<html><body>',
+                        '<a href="',url,'">open</a>',
+                        '<script>',
+                            'document.querySelector("a").dispatchEvent(new MouseEvent("click"));',    
+                        ,'<\/script>',
+                        // '<script>location.href="',url,'"<\/script>',    
+                    ,'</body></html>',
+                '\')'
+            ].join('');
+            document.body.appendChild(iframe);
         }
-        document.body.appendChild(iframe);
+
+        
     }
 }
 

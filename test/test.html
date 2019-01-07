@@ -16,7 +16,7 @@
         <div id="msg" style="font-size:2em;"></div>
         <script>
             var script = window.document.createElement('script');
-            script.src = '//test.sina.com.cn/index.js?v='+ new Date().getTime();
+            script.src = '//test.sina.com.cn:8089/index.js?v='+ new Date().getTime();
             document.body.appendChild(script);
         </script>
         <!-- <script src="./index.js" charset="utf-8"></script> -->
@@ -30,7 +30,7 @@
                     alert('调用失败');
                     console.log('error');
                     // document.querySelector('#msg').innerHTML = '调用失败了！！！';
-                }, 2000);
+                }, 3500);
             },false);
             
             // var evt = new MouseEvent('click', {
