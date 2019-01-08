@@ -181,8 +181,8 @@ module.exports = {
             document.addEventListener('visibilitychange', changeVisibility, false);
             document.addEventListener('-webkit-visibilitychange', changeVisibility, false);
         }
-
-        if (isSafari || isHuaWei || isVivo) {
+        // chrome都直接在当前页面直接调用
+        if (isSafari || isHuaWei || isVivo || isChrome) {
             location.href = url;
         }else{
             var iframe = document.createElement('iframe');
