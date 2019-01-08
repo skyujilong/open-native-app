@@ -96,6 +96,7 @@ var isHuaWei = /huawei|honorkiw/i.test(ua);
 var isAndroid = (!isIos) && ((/android/).test(ua) || (/xiaomi/).test(ua));
 var isRuning = false;
 var isWX = /MicroMessenger/i.test(ua);
+var isVivo = /vivo/i.test(ua);
 var defalutDelayTime = 1.5 * 1000;
 var errorIde; //普通错误setTimeout id
 /**
@@ -181,7 +182,7 @@ module.exports = {
             document.addEventListener('-webkit-visibilitychange', changeVisibility, false);
         }
 
-        if ( isSafari || isHuaWei) {
+        if (isSafari || isHuaWei || isVivo) {
             location.href = url;
         }else{
             var iframe = document.createElement('iframe');
