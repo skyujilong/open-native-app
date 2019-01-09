@@ -10,9 +10,11 @@ var isQQApp = /qbwebviewtype\/1/i.test(ua);
 var isSafari = !isUC && !isChrome && (/([\w.]*) safari/).test(ua);
 var isIos = (/like mac os x/i).test(ua);
 var isHuaWei = /huawei|honorkiw/i.test(ua);
+var isXiaoMiBrowser = /xiaomi\/miuibrowser/i.test(ua);
 var isAndroid = (!isIos) && ((/android/).test(ua) || (/xiaomi/).test(ua));
 var isRuning = false;
 var isWX = /MicroMessenger/i.test(ua);
+
 var isVivo = /vivo/i.test(ua);
 var defalutDelayTime = 1.5 * 1000;
 var errorIde; //普通错误setTimeout id
@@ -99,7 +101,7 @@ module.exports = {
             document.addEventListener('-webkit-visibilitychange', changeVisibility, false);
         }
         // chrome都直接在当前页面直接调用
-        if (isSafari || isHuaWei || isVivo || isChrome) {
+        if ((isSafari || isHuaWei || isVivo || isChrome) && !isQQApp) {
             location.href = url;
         }else{
             var iframe = document.createElement('iframe');
